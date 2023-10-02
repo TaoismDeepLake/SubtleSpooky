@@ -7,6 +7,7 @@ import com.deeplake.subtlespooky.util.EntityUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
@@ -44,12 +45,16 @@ public class EventsSpooky {
             {
                 if (random.nextFloat() < ModConfig.GENERAL_CONF.SKELETON_SOUND_CHANCE)
                 {
+                    SoundEvent soundEvent = random.nextBoolean() ? SoundEvents.ENTITY_SKELETON_SHOOT
+                            : SoundEvents.ENTITY_SKELETON_AMBIENT;
                     world.playSound(null,spot.x, spot.y, spot.z,
-                            SoundEvents.ENTITY_SKELETON_SHOOT,
+                            soundEvent,
                             SoundCategory.HOSTILE,
                             0.8f+random.nextFloat()*0.2f,
                             1f);
                 }
+
+                //todo: witch, creeper, arrow hit, explosion
             }
         }
     }
